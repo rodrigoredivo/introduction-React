@@ -1,7 +1,8 @@
 import React from 'react';
 import './Style.css'
+import stickers from './assets/stickers.jpg';
 
 function App(){
-  return <h1>Hello Rodrigo Redivo , 2020!</h1>
+  return <img width='1600px' height="768px" src={stickers}/>
 }
 export default App;
