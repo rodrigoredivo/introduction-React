@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Namelist extends Component {
   state = {
+    newName: '',
     name: [
       'Nodejs',
       'Php',
@@ -10,17 +11,32 @@ class Namelist extends Component {
     ]
   };
 
+  handleInputChange = e => {
+    this.setState({ newName: e.target.value });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    this.setState({
+      name: [...this.state.name, this.state.newName],
+      newName: ''
+    });
+  }
+
   render() {
-
-    console.log(this.state);
-
     return (
-      <ul>
-        <li>Nodejs</li>
-        <li>Php</li>
-        <li>Java</li>
-        <li>Python</li>
-      </ul>
+      <form onSubmit={this.handleSubmit}>
+        <ul>
+          {this.state.name.map(name => <li key={name}>{name}</li>)}
+        </ul>
+        <input 
+          type="text" 
+          onChange={this.handleInputChange} 
+          value={this.state.newName}
+        />
+        <button type="submit">Adicionar</button>
+      </form>
     );
   }
 };
