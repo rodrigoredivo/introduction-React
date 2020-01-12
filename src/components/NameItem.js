@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function NameItem({ names, onDelete  }){
   return (
@@ -8,5 +9,16 @@ function NameItem({ names, onDelete  }){
     </li>
   );
 }
+
+// Default Props
+NameItem.defaultProps = {
+  names: 'Secret',
+};
+
+// PropTypes
+NameItem.propTypes = {
+  names: PropTypes.string,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default NameItem;

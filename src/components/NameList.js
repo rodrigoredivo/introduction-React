@@ -40,6 +40,7 @@ class Namelist extends Component {
               onDelete={() => this.handleDelete (names)}
             /> 
           )}
+          <NameItem />
         </ul>
         <input 
           type="text" 
