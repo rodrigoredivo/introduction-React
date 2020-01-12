@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NameItem  from './NameItem';
 
 class Namelist extends Component {
   state = {
@@ -32,12 +33,13 @@ class Namelist extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <ul>
-          {this.state.name.map(names => (
-            <li key={names}>
-              {names}
-              <button onClick={() => this.handleDelete(names)} type="button">Remover</button>
-            </li>
-          ))}
+          {this.state.name.map(names => 
+            <NameItem 
+              key={names} 
+              names={names} 
+              onDelete={() => this.handleDelete (names)}
+            /> 
+          )}
         </ul>
         <input 
           type="text" 
