@@ -4,13 +4,24 @@ import NameItem  from './NameItem';
 class Namelist extends Component {
   state = {
     newName: '',
-    name: [
-      'Nodejs',
-      'Php',
-      'Java',
-      'Python'
-    ]
+    name: []
   };
+
+  // Executed as soon as component appears on screen
+  componentDidMount() {
+    const name = localStorage.getItem('name');
+
+    if( name ) {
+      this.setState({ name: JSON.parse(name) });
+    }
+  }
+
+  // Runs whenever props or state changes
+  componentDidUpdate (_, prevState){
+    if(prevState.name !== this.state.name) {
+      localStorage.setItem('name', JSON.stringify(this.state.name));
+    }
+  }
 
   handleInputChange = e => {
     this.setState({ newName: e.target.value });
@@ -40,7 +51,6 @@ class Namelist extends Component {
               onDelete={() => this.handleDelete (names)}
             /> 
           )}
-          <NameItem />
         </ul>
         <input 
           type="text" 
