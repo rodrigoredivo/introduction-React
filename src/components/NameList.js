@@ -24,11 +24,20 @@ class Namelist extends Component {
     });
   }
 
+  handleDelete = (names) => {
+    this.setState({ name: this.state.name.filter(n => n !== names )});
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <ul>
-          {this.state.name.map(name => <li key={name}>{name}</li>)}
+          {this.state.name.map(names => (
+            <li key={names}>
+              {names}
+              <button onClick={() => this.handleDelete(names)} type="button">Remover</button>
+            </li>
+          ))}
         </ul>
         <input 
           type="text" 
